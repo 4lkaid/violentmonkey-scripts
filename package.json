@@ -1,0 +1,14 @@
+{
+  "name": "violentmonkey-scripts",
+  "version": "1.0.0",
+  "description": "暴力猴脚本",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "4lkaid",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.3.0",
+    "eslint-config-google": "^0.14.0"
+  }
+}
