@@ -6,11 +6,12 @@
 // @grant       GM_registerMenuCommand
 // @grant       GM_setValue
 // @license     MIT
-// @match       *://*.baidu.com/*
+// @match       https://www.baidu.com/
+// @match       https://www.baidu.com/s?*
 // @name        关键词黑名单
 // @namespace   https://github.com/4lkaid/violentmonkey-scripts
 // @run-at      document-end
-// @version     1.0
+// @version     1.1
 // ==/UserScript==
 GM_registerMenuCommand('点击设置词库黑名单', () => {
     const blacklist = prompt(
