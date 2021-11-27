@@ -11,12 +11,19 @@
 // @name        关键词黑名单
 // @namespace   https://github.com/4lkaid/violentmonkey-scripts
 // @run-at      document-end
-// @version     1.2
+// @version     1.3
 // ==/UserScript==
 const tmp = GM_getValue('blacklist', '');
-tmp && tmp.replaceAll(' ', '') ?
-    GM_setValue('blacklist', tmp.replaceAll(' ', '')) :
+if (tmp && tmp.replaceAll(' ', '')) {
+    const tmpFMT = Array.from(
+        new Set(tmp.replaceAll(' ', '').split('#'))
+    ).filter((item) => !!item);
+    if (tmpFMT.length > 0) {
+        GM_setValue('blacklist', tmpFMT.join('#'));
+    }
+} else {
     GM_deleteValue('blacklist');
+}
 GM_registerMenuCommand('点击设置词库黑名单', () => {
     const blacklist = prompt(
         '请输入要过滤的关键词, 用\'#\'分隔',
