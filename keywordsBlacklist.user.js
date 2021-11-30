@@ -7,11 +7,12 @@
 // @grant       GM_setValue
 // @license     MIT
 // @match       https://www.baidu.com/
+// @match       https://www.baidu.com/baidu?*
 // @match       https://www.baidu.com/s?*
 // @name        关键词黑名单
 // @namespace   https://github.com/4lkaid/violentmonkey-scripts
 // @run-at      document-end
-// @version     1.4
+// @version     1.5
 // ==/UserScript==
 const tmp = GM_getValue('blacklist', '');
 if (tmp && tmp.replaceAll(' ', '')) {
