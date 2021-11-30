@@ -11,7 +11,7 @@
 // @name        关键词黑名单
 // @namespace   https://github.com/4lkaid/violentmonkey-scripts
 // @run-at      document-end
-// @version     1.3
+// @version     1.4
 // ==/UserScript==
 const tmp = GM_getValue('blacklist', '');
 if (tmp && tmp.replaceAll(' ', '')) {
@@ -24,7 +24,7 @@ if (tmp && tmp.replaceAll(' ', '')) {
 } else {
     GM_deleteValue('blacklist');
 }
-GM_registerMenuCommand('点击设置词库黑名单', () => {
+GM_registerMenuCommand('点击设置关键词黑名单', () => {
     const blacklist = prompt(
         '请输入要过滤的关键词, 用\'#\'分隔',
         GM_getValue('blacklist', '')
@@ -42,4 +42,15 @@ document.getElementById('form').onsubmit = () => {
         kw.value += blacklistStr;
     }
     return false;
+};
+window.onload = () => {
+    const params = new URLSearchParams(window.location.search);
+    let wd = params.get('wd');
+    if (wd && wd.indexOf(blacklistStr) === -1) {
+        wd = wd.replace(regexp, '').trim();
+        if (wd) {
+            params.set('wd', wd + blacklistStr);
+            location.href = 'https://www.baidu.com/s?' + params.toString();
+        }
+    }
 };
